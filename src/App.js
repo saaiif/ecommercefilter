@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="container">
-          <h1>E-commerce Shopping Cart Application</h1>
+          <h1>E-commerce Filter Application</h1>
           <hr />
           <div className="row">
             <div className="col-md-9">

@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from './types';
+import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE, FILTER_PRODUCTS_BY_FREESHIPPING } from './types';
 
 export const fetchProducts = () => (dispatch) => {
 	fetch('http://localhost:3000/products')
@@ -18,6 +18,17 @@ export const filterProducts = (products, size) => (dispatch) => {
 		}
 	});
 };
+
+export const freeShipping = (products, freeshipping) => (dispatch) => {
+	dispatch({
+		type: FILTER_PRODUCTS_BY_FREESHIPPING,
+		payload: {
+			freeshipping: freeshipping,
+			items: freeshipping === 'undefined' ? products.filter((x) => x.isFreeShipping === false) : products.filter((x) => x.isFreeShipping === true)
+		}
+	});
+};
+
 
 export const sortProducts = (items, sort) => (dispatch) => {
 	const products = items.slice();

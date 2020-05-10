@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterProducts, sortProducts } from '../actions/productActions';
+import { filterProducts, sortProducts, freeShipping } from '../actions/productActions';
+const pointer = {
+	cursor: 'pointer',
+}
+
 class Filter extends Component {
 	render() {
 		return (
@@ -9,7 +13,7 @@ class Filter extends Component {
 				<div className="col-md-4">
 					<label>
 						Order by
-						<select
+						<select style={pointer}
 							className="form-control"
 							value={this.props.sort}
 							onChange={(event) => {
@@ -22,11 +26,30 @@ class Filter extends Component {
 						</select>
 					</label>
 				</div>
+
+				{/* Freeshipping */}
+
+				<div className="col-md-4" >
+					<label >
+						Free Shipping ?
+						<select style={pointer}
+							className="form-control"
+							value={this.props.freeshipping}
+							onChange={(event) => {
+								this.props.freeShipping(this.props.products, event.target.value);
+							}}
+						>
+							<option value="">Select</option>
+							<option value="true">YES</option>
+							<option value="undefined">NO</option>
+						</select>
+					</label>
+				</div>
 				<div className="col-md-4">
 					<label>
 						{' '}
 						Filter Size
-						<select
+						<select style={pointer}
 							className="form-control"
 							value={this.props.size}
 							onChange={(event) => {
@@ -51,6 +74,7 @@ const mapStateToProps = (state) => ({
 	products: state.products.items,
 	filteredProducts: state.products.filteredItems,
 	size: state.products.size,
-	sort: state.products.sort
+	sort: state.products.sort,
+	freeshipping:state.products.freeshipping
 });
-export default connect(mapStateToProps, { filterProducts, sortProducts })(Filter);
+export default connect(mapStateToProps, { filterProducts, sortProducts, freeShipping })(Filter);

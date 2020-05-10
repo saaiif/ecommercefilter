@@ -6,7 +6,7 @@ export default class Copyright extends Component {
 				<h4>IMPORTANT LINKS</h4>
 				<ul>
 					<li>
-						<a href="https://github.com/basir/ecommerce-shopping-cart">Download Source code </a>
+						<a href="https://github.com/saaiif/ecommercefilter" target="_blank">Download Source code </a>
 					</li>
 				</ul>
 			</div>
